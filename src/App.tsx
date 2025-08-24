@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import QHeader from "./components/QHeader";
 import QInput from "./components/QInput";
@@ -11,9 +11,34 @@ import QFormOrderByOffer from "./components/QFormOrderByOffer";
 import QFormFilterOffer from "./components/QFormFilterOffer";
 import QSectionForm from "./components/QSectionForm";
 
+interface Offer {
+  id: string;
+  courseName: string;
+  rating: number;
+  fullPrice: number;
+  offeredPrice: number;
+  kind: 'presencial' | 'ead';
+  level: 'bacharelado' | 'licenciatura' | 'tecnologo';
+  iesLogo: string;
+  iesName: string;
+}
+
 const App: React.FC = () => {
-  const [offers] = useState([]);
-  
+  const [offers, setOffers] = useState<Offer[]>([]);
+
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/offers');
+        const data = await response.json();
+        setOffers(data);
+      } catch (err) {
+        console.error('Erro ao carregar as ofertas.', err);
+      }
+    };
+    fetchOffers();
+  }, []);
+
   return (
     <QLayout
       header={
