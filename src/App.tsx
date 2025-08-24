@@ -24,15 +24,23 @@ interface Offer {
 }
 
 function formatKind(kind: string): string {
-    return kind.charAt(0).toUpperCase() + kind.slice(1);
+  return kind.charAt(0).toUpperCase() + kind.slice(1);
 }
 
 function formatLevel(level: string): string {
   let formatted = level;
-  if(level == 'tecnologo'){
-    formatted = 'tecnólogo';  
+  if (level == 'tecnologo') {
+    formatted = 'tecnólogo';
   }
   return `Graduação (${formatted})`;
+}
+
+function formatPrice(price: number): string {
+  const formattedPrice = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
+  return formattedPrice;
 }
 
 
@@ -83,8 +91,8 @@ const App: React.FC = () => {
               key={card.id}
               courseName={card.courseName}
               rating={card.rating}
-              fullPrice={String(card.fullPrice)}
-              offeredPrice={String(card.offeredPrice)}
+              fullPrice={formatPrice(card.fullPrice)}
+              offeredPrice={formatPrice(card.offeredPrice)}
               discount={String(card.discount)}
               kind={formatKind(card.kind)}
               level={formatLevel(card.level)}
