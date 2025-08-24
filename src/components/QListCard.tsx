@@ -16,6 +16,7 @@ const QListCard = <T extends Card>({
 }: QListCardProps<T>) => {
   return (
     <ul
+      className="grid 2xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4"
       {...rest}
     >
       {cards.map((card) => (

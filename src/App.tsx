@@ -63,7 +63,8 @@ const App: React.FC = () => {
       />
 
       <div className="mt-6">
-        <QListCard cards={offers}>
+        <QListCard cards={offers}
+        >
           {(card) => (
             <QCardOffer
               key={card.id}
