@@ -8,10 +8,10 @@ type QRowProps = {
 const QRow: FC<QRowProps> = ({ sidebar, children }) => {
   return (
     <div className="flex w-full px-4 lg:px-8">
-      <div className="hidden lg:flex w-[200px]">
+      <div className="hidden lg:block w-[200px] shrink-0">
         {sidebar}
       </div>
-      <div className="pl-0 lg:pl-8 flex-1">
+      <div className="px-4 lg:px-8 flex-1">
         {children}
       </div>
     </div>
