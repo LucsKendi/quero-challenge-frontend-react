@@ -17,10 +17,17 @@ interface Offer {
   rating: number;
   fullPrice: number;
   offeredPrice: number;
+  discount: number;
   kind: 'presencial' | 'ead';
   level: 'bacharelado' | 'licenciatura' | 'tecnologo';
   iesLogo: string;
   iesName: string;
+}
+
+function calculateDiscount(fullPrice: number, offeredPrice: number): number {
+  if (fullPrice <= 0) return 0;
+  const discount = ((fullPrice - offeredPrice) / fullPrice) * 100;
+  return Math.round(discount);
 }
 
 function formatKind(kind: string): string {
@@ -93,7 +100,7 @@ const App: React.FC = () => {
               rating={card.rating}
               fullPrice={formatPrice(card.fullPrice)}
               offeredPrice={formatPrice(card.offeredPrice)}
-              discount={String(card.discount)}
+              discount={`${calculateDiscount(card.fullPrice, card.offeredPrice)}%`}
               kind={formatKind(card.kind)}
               level={formatLevel(card.level)}
               iesLogo={card.iesLogo}
