@@ -14,13 +14,10 @@ const QRating: FC<QBadgeProps> = ({ rating }) => {
       <div className="flex items-center space-x-1 text-yellow-500">
         {stars.map((_, i) => {
           if (i < Math.floor(rating)) {
-            // estrela cheia
             return <QIconStar key={i} />;
           } else if (i === Math.floor(rating) && rating % 1 !== 0) {
-            // meia estrela
             return <QIconStar key={i} half />;
           } else {
-            // estrela vazia
             return <QIconStar key={i} empty />;
           }
         })}
