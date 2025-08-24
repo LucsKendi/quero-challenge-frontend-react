@@ -24,10 +24,15 @@ interface Offer {
 }
 
 function formatKind(kind: string): string {
-  if (kind == 'presencial' || kind == 'ead') {
     return kind.charAt(0).toUpperCase() + kind.slice(1);
+}
+
+function formatLevel(level: string): string {
+  let formatted = level;
+  if(level == 'tecnologo'){
+    formatted = 'tecnólogo';  
   }
-  return "";
+  return `Graduação (${formatted})`;
 }
 
 
@@ -82,7 +87,7 @@ const App: React.FC = () => {
               offeredPrice={String(card.offeredPrice)}
               discount={String(card.discount)}
               kind={formatKind(card.kind)}
-              level={card.level}
+              level={formatLevel(card.level)}
               iesLogo={card.iesLogo}
               iesName={card.iesName}
             />
