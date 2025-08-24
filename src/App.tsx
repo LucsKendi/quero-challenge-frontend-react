@@ -23,6 +23,14 @@ interface Offer {
   iesName: string;
 }
 
+function formatKind(kind: string): string {
+  if (kind == 'presencial' || kind == 'ead') {
+    return kind.charAt(0).toUpperCase() + kind.slice(1);
+  }
+  return "";
+}
+
+
 const App: React.FC = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
 
@@ -73,7 +81,7 @@ const App: React.FC = () => {
               fullPrice={String(card.fullPrice)}
               offeredPrice={String(card.offeredPrice)}
               discount={String(card.discount)}
-              kind={card.kind}
+              kind={formatKind(card.kind)}
               level={card.level}
               iesLogo={card.iesLogo}
               iesName={card.iesName}
