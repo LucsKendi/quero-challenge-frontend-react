@@ -5,6 +5,7 @@ Para garantir uma organização eficiente e transparente durante o desenvolvimen
 
 ### Organização de Tarefas
 - **GitHub Projects**: Utilizei o GitHub Projects no formato Kanban para organizar e acompanhar o progresso das tarefas
+    - Link: https://github.com/users/LucsKendi/projects/2
 - **Board Kanban**: Todas as funcionalidades foram quebradas em histórias e essas em tasks menores e organizadas em colunas (To Do, In Progress, Done).
 
 ### Controle de Versão
