@@ -1,8 +1,14 @@
 import { FC } from "react";
 import QHeading from "./QHeading";
 import QInputRadio from "./QInputRadio";
+import { useOffers } from "../context/OffersContext";
 
 const QFormOrderByOffer: FC = () => {
+  const {
+    sortBy,
+    setSortBy
+  } = useOffers();
+
   return (
     <form action="#">
       <QHeading
@@ -12,27 +18,29 @@ const QFormOrderByOffer: FC = () => {
       >
         Ordenar
       </QHeading>
-      
+
       <QInputRadio
         label="Cursos de A-Z"
         name="order-by"
-        value="course-name"
-        checked
-        onChange={ () => {} }
+        value="name"
+        checked= {sortBy === 'name'}
+        onChange={() => setSortBy('name')}
       />
-      
+
       <QInputRadio
         label="Menor preço"
         name="order-by"
         value="price"
-        onChange={ () => {} }
+        checked= {sortBy === 'price'}
+        onChange={() => setSortBy('price')}
       />
-      
+
       <QInputRadio
         label="Melhor avaliados"
         name="order-by"
         value="rating"
-        onChange={ () => {} }
+        checked= {sortBy === 'rating'}
+        onChange={() => setSortBy('rating')}
       />
     </form>
   );
