@@ -16,6 +16,8 @@ interface OffersContextType {
     allOffers: Offer[];
     filteredOffers: Offer[];
     searchTerm: string;
+    sortBy: string;
+    setSortBy: (sort: string) => void;
     setAllOffers: (offers: Offer[]) => void;
     setSearchTerm: (term: string) => void;
     handleSearch: () => void;
@@ -37,18 +39,28 @@ export const OffersProvider: React.FC<OffersProviderProps> = ({ children }) => {
     const [allOffers, setAllOffers] = useState<Offer[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filteredOffers, setFilteredOffers] = useState<Offer[]>([]);
+    const [sortBy, setSortBy] = useState<string>("");
 
     useEffect(() => {
         handleSearch();
-    }, [allOffers, searchTerm]);
+    }, [allOffers, sortBy]);
 
     const handleSearch = () => {
-        const term = searchTerm.trim().toLowerCase();
-        const result = term
-            ? allOffers.filter((offer) =>
-                offer.courseName.toLowerCase().includes(term)
+        let result = allOffers;
+
+        if (searchTerm.trim()) {
+            result = allOffers.filter((offer) =>
+                offer.courseName.toLowerCase().includes(searchTerm.toLowerCase())
             )
-            : allOffers;
+        }
+
+        if (sortBy === 'name') {
+            result.sort((a, b) => a.courseName.localeCompare(b.courseName));
+        } else if (sortBy === 'price') {
+            result.sort((a, b) => a.offeredPrice - b.offeredPrice);
+        } else if (sortBy === 'rating') {
+            result.sort((a, b) => b.rating - a.rating);
+        }
 
         setFilteredOffers(result);
     };
@@ -57,6 +69,8 @@ export const OffersProvider: React.FC<OffersProviderProps> = ({ children }) => {
         allOffers,
         filteredOffers,
         searchTerm,
+        sortBy,
+        setSortBy,
         setAllOffers,
         setSearchTerm,
         handleSearch
