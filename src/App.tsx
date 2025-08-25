@@ -10,7 +10,7 @@ import QListCard from "./components/QListCard";
 import QFormOrderByOffer from "./components/QFormOrderByOffer";
 import QFormFilterOffer from "./components/QFormFilterOffer";
 import QSectionForm from "./components/QSectionForm";
-import {OffersProvider, useOffers } from "./context/OffersContext";
+import { OffersProvider, useOffers } from "./context/OffersContext";
 
 function calculateDiscount(fullPrice: number, offeredPrice: number): number {
   if (fullPrice <= 0) return 0;
@@ -38,11 +38,14 @@ function formatPrice(price: number): string {
   return formattedPrice;
 }
 
-
 const AppContent: React.FC = () => {
   const {
     allOffers,
+    filteredOffers,
+    searchTerm,
     setAllOffers,
+    setSearchTerm,
+    handleSearch
   } = useOffers();
 
   useEffect(() => {
@@ -68,8 +71,10 @@ const AppContent: React.FC = () => {
             name="q"
             placeholder="Busque o curso ideal para você"
             aria-label="Buscar cursos e bolsas"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <QButton type="submit">Buscar</QButton>
+          <QButton type="button" onClick={handleSearch}>Buscar</QButton>
         </QHeader>
       }
       sidebar={<QFormFilterOffer />}
@@ -82,7 +87,7 @@ const AppContent: React.FC = () => {
       />
 
       <div className="mt-6">
-        <QListCard cards={allOffers}
+        <QListCard cards={filteredOffers}
         >
           {(card) => (
             <QCardOffer
