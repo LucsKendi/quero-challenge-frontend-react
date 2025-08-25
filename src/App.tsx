@@ -10,19 +10,7 @@ import QListCard from "./components/QListCard";
 import QFormOrderByOffer from "./components/QFormOrderByOffer";
 import QFormFilterOffer from "./components/QFormFilterOffer";
 import QSectionForm from "./components/QSectionForm";
-
-interface Offer {
-  id: string;
-  courseName: string;
-  rating: number;
-  fullPrice: number;
-  offeredPrice: number;
-  discount: number;
-  kind: 'presencial' | 'ead';
-  level: 'bacharelado' | 'licenciatura' | 'tecnologo';
-  iesLogo: string;
-  iesName: string;
-}
+import {OffersProvider, useOffers } from "./context/OffersContext";
 
 function calculateDiscount(fullPrice: number, offeredPrice: number): number {
   if (fullPrice <= 0) return 0;
@@ -51,21 +39,24 @@ function formatPrice(price: number): string {
 }
 
 
-const App: React.FC = () => {
-  const [offers, setOffers] = useState<Offer[]>([]);
+const AppContent: React.FC = () => {
+  const {
+    allOffers,
+    setAllOffers,
+  } = useOffers();
 
   useEffect(() => {
     const fetchOffers = async () => {
       try {
         const response = await fetch('http://localhost:3000/offers');
         const data = await response.json();
-        setOffers(data);
+        setAllOffers(data);
       } catch (err) {
         console.error('Erro ao carregar as ofertas.', err);
       }
     };
     fetchOffers();
-  }, []);
+  }, [setAllOffers]);
 
   return (
     <QLayout
@@ -91,7 +82,7 @@ const App: React.FC = () => {
       />
 
       <div className="mt-6">
-        <QListCard cards={offers}
+        <QListCard cards={allOffers}
         >
           {(card) => (
             <QCardOffer
@@ -110,6 +101,14 @@ const App: React.FC = () => {
         </QListCard>
       </div>
     </QLayout>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <OffersProvider>
+      <AppContent />
+    </OffersProvider>
   );
 };
 
