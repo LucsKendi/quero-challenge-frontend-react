@@ -1,4 +1,33 @@
 # 🖥️ Desafio de Front-End - Quero Educação 🚀
+## Metodologia de Desenvolvimento Utilizada
+
+Para garantir uma organização eficiente e transparente durante o desenvolvimento, foram utilizadas as seguintes práticas:
+
+### Organização de Tarefas
+- **GitHub Projects**: Utilizei o GitHub Projects no formato Kanban para organizar e acompanhar o progresso das tarefas
+    - Link: https://github.com/users/LucsKendi/projects/2
+- **Board Kanban**: Todas as funcionalidades foram quebradas em histórias e essas em tasks menores e organizadas em colunas (To Do, In Progress, Done).
+
+### Controle de Versão
+- **Commits Semânticos**: Utilização de conventional commits para facilitar o entendimento do histórico de mudanças
+  - `feat:` para novas funcionalidades
+  - `fix:` para correções de bugs
+  - `refactor:` para refatorações de código
+  - `docs:` para atualizações de documentação
+
+### Fluxo de Desenvolvimento
+- **Pull Requests**: Abertura de PRs organizados de acordo com as tasks criadas no board
+- **Branches por Feature**: Cada funcionalidade desenvolvida em branch separada
+
+### Rastreabilidade
+- **Issues Linkadas**: Cada PR vinculado às respectivas issues do projeto
+- **Estimativas de Tempo**: Documentação retrospectiva do tempo investido em cada categoria de task
+
+Essa abordagem garantiu um desenvolvimento organizado, com visibilidade completa do progresso e facilidade para revisão do trabalho realizado.
+
+---
+
+# O Desafio
 
 Bem-vindo(a) ao **Desafio de Front-End da Quero Educação**! 🎉  
 Este desafio foi criado para avaliar suas habilidades em desenvolvimento, focando na implementação de funcionalidades e
