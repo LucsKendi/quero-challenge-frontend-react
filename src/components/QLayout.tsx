@@ -10,7 +10,7 @@ type QLayoutProps = {
 
 const QLayout: FC<QLayoutProps> = ({ sidebar, header, children, footer }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <div className="border-b">
         <header className="max-w-screen-2xl mx-auto w-full">{header}</header>
       </div>

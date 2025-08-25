@@ -29,7 +29,7 @@ const QCardOffer: FC<QCardOfferProps> = ({
   iesName,
 }) => {
   return (
-    <article className="bg-white p-6 rounded-lg shadow-sm border flex flex-col justify-between items-start gap-3">
+    <article className="bg-white p-6 rounded-lg shadow-sm border flex flex-col justify-between items-start gap-3 h-full">
       <img src={iesLogo} alt={iesName} className="h-10 object-contain" />
       <QHeading tag="h2" size="sm">
         {courseName}
