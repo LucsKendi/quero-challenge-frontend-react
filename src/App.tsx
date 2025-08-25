@@ -12,32 +12,6 @@ import QFormFilterOffer from "./components/QFormFilterOffer";
 import QSectionForm from "./components/QSectionForm";
 import { OffersProvider, useOffers } from "./context/OffersContext";
 
-function calculateDiscount(fullPrice: number, offeredPrice: number): number {
-  if (fullPrice <= 0) return 0;
-  const discount = ((fullPrice - offeredPrice) / fullPrice) * 100;
-  return Math.round(discount);
-}
-
-function formatKind(kind: string): string {
-  return kind.charAt(0).toUpperCase() + kind.slice(1);
-}
-
-function formatLevel(level: string): string {
-  let formatted = level;
-  if (level == 'tecnologo') {
-    formatted = 'tecnólogo';
-  }
-  return `Graduação (${formatted})`;
-}
-
-function formatPrice(price: number): string {
-  const formattedPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(price);
-  return formattedPrice;
-}
-
 const AppContent: React.FC = () => {
   const {
     allOffers,
@@ -60,6 +34,32 @@ const AppContent: React.FC = () => {
     };
     fetchOffers();
   }, [setAllOffers]);
+
+  function calculateDiscount(fullPrice: number, offeredPrice: number): number {
+    if (fullPrice <= 0) return 0;
+    const discount = ((fullPrice - offeredPrice) / fullPrice) * 100;
+    return Math.round(discount);
+  }
+
+  function formatKind(kind: string): string {
+    return kind.charAt(0).toUpperCase() + kind.slice(1);
+  }
+
+  function formatLevel(level: string): string {
+    let formatted = level;
+    if (level == 'tecnologo') {
+      formatted = 'tecnólogo';
+    }
+    return `Graduação (${formatted})`;
+  }
+
+  function formatPrice(price: number): string {
+    const formattedPrice = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price);
+    return formattedPrice;
+  }
 
   return (
     <QLayout
